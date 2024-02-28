@@ -7,5 +7,12 @@ generator client {
 
 datasource db {
   provider = "sqlite"
-  url      = env("DATABASE_URL")
+  url = env("DATABASE_URL")
+}
+
+model Link {
+  id Int @id @default(autoincrement())
+  name String
+  link String @unique
+  createdAt DateTime @default(now())
 }
