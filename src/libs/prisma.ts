@@ -8,14 +8,10 @@ class PrismaSingleton {
   public static getInstance(): PrismaClient {
     if (!PrismaSingleton.instance) {
       PrismaSingleton.instance = new PrismaClient();
-      console.log("New PrismaClient instance.");
     }
 
     return PrismaSingleton.instance;
   }
 }
 
-export const prisma =
-  process.env.NODE_ENV !== "production"
-    ? PrismaSingleton.getInstance()
-    : new PrismaClient();
+export const prisma = PrismaSingleton.getInstance();
