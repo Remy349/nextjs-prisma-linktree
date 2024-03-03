@@ -3,8 +3,11 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
 import { Loader2 } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { z } from "zod";
 
 const FormSchema = z.object({
@@ -26,9 +29,23 @@ export const SignUpForm = () => {
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm<TFormSchema>({ resolver: zodResolver(FormSchema) });
+  const router = useRouter();
 
   const onSubmit = async (formData: TFormSchema) => {
-    await new Promise((response) => setTimeout(response, 3000));
+    await axios
+      .post("/api/auth/sign-up", {
+        ...formData,
+      })
+      .then(() => {
+        toast.success("User successfully created.");
+
+        router.replace("/auth/sign-in");
+      })
+      .catch((error) => {
+        if (error) {
+          toast.error("User already created.");
+        }
+      });
   };
 
   return (
