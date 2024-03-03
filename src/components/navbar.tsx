@@ -12,7 +12,7 @@ export const Navbar = () => {
           <ul className="flex gap-3 items-center">
             <li>
               <Button variant="secondary" asChild>
-                <Link href="/">Sign In</Link>
+                <Link href="/auth/sign-in">Sign In</Link>
               </Button>
             </li>
             <li>
