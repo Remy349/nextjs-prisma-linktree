@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import "@/app/globals.css";
 import { Inter } from "next/font/google";
 import { cn } from "@/libs/utils";
-import { Navbar } from "@/components/navbar";
+import { Navbar } from "@/components/principal/navbar";
 import { Toaster } from "sonner";
 
 const inter = Inter({
