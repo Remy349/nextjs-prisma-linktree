@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { signIn } from "next-auth/react";
 
 const FormSchema = z.object({
   emailAddress: z
@@ -25,7 +26,12 @@ export const SignInForm = () => {
   } = useForm<TFormSchema>({ resolver: zodResolver(FormSchema) });
 
   const onSubmit = async (formData: TFormSchema) => {
-    await new Promise((response) => setTimeout(response, 3000));
+    const res = await signIn("credentials", {
+      email: formData.emailAddress,
+      password: formData.password,
+    });
+
+    console.log(res);
   };
 
   return (
