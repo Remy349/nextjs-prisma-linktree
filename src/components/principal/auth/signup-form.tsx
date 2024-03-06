@@ -12,7 +12,7 @@ import { z } from "zod";
 
 const FormSchema = z.object({
   username: z.string().min(1, { message: "Username is required." }),
-  emailAddress: z
+  email: z
     .string()
     .min(1, { message: "Email is required." })
     .email({ message: "Email is invalid." }),
@@ -63,15 +63,13 @@ export const SignUpForm = () => {
       </div>
       <div className="flex flex-col space-y-2">
         <Input
-          {...register("emailAddress")}
+          {...register("email")}
           type="text"
           placeholder="Email"
           autoComplete="off"
         />
-        {errors.emailAddress && (
-          <p className="text-red-500 text-base">
-            {errors.emailAddress.message}
-          </p>
+        {errors.email && (
+          <p className="text-red-500 text-base">{errors.email.message}</p>
         )}
       </div>
       <div className="flex flex-col space-y-2">

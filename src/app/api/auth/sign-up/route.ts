@@ -3,11 +3,11 @@ import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcrypt";
 
 export async function POST(request: NextRequest) {
-  const { username, emailAddress, password } = await request.json();
+  const { username, email, password } = await request.json();
 
   const createdUser = await prisma.user.findFirst({
     where: {
-      OR: [{ username }, { emailAddress }],
+      OR: [{ username }, { email }],
     },
   });
 
@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
   await prisma.user.create({
     data: {
       username,
-      emailAddress,
+      email,
       password: hashedPassword,
     },
   });
