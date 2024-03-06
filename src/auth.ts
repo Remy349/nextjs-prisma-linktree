@@ -36,7 +36,7 @@ export const {
           if (!passwordMatch) return null;
 
           return {
-            id: user.id.toString(),
+            id: String(user.id),
             email: user.email,
           };
         }

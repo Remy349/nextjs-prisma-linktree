@@ -5,7 +5,9 @@ import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
 import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { z } from "zod";
 
 const FormSchema = z.object({
@@ -26,6 +28,7 @@ export const SignInForm = () => {
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm<TFormSchema>({ resolver: zodResolver(FormSchema) });
+  const router = useRouter();
 
   const onSubmit = async (formData: TFormSchema) => {
     const res = await signIn("credentials", {
@@ -34,7 +37,11 @@ export const SignInForm = () => {
       redirect: false,
     });
 
-    console.log(res);
+    if (res?.error) {
+      toast.error("Invalid credentials.");
+    } else {
+      router.push("/dashboard");
+    }
   };
 
   return (
