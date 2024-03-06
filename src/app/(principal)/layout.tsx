@@ -10,7 +10,10 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Linktree",
+  title: {
+    template: "%s | Linktree",
+    default: "Linktree",
+  },
 };
 
 export default function RootLayout({
