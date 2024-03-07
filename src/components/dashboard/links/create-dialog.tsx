@@ -15,7 +15,7 @@ export const CreateDialog = () => {
       <DialogTrigger asChild>
         <Button className="w-full">
           <Plus className="mr-2 w-4 h-4" />
-          Add ink
+          Add link
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-lg">

@@ -6,7 +6,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import { Loader2 } from "lucide-react";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { z } from "zod";
 
 const FormSchema = z.object({
@@ -19,13 +21,32 @@ type TFormSchema = z.infer<typeof FormSchema>;
 export const CreateForm = () => {
   const {
     register,
+    reset,
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm<TFormSchema>({ resolver: zodResolver(FormSchema) });
-  const userSession = useSession()
+  const { data } = useSession();
+  const router = useRouter();
 
   const onSubmit = async (formData: TFormSchema) => {
-    console.log(userSession);
+    await axios
+      .post("/api/links", {
+        name: formData.name,
+        link: formData.link,
+        email: data?.user?.email,
+      })
+      .then(() => {
+        toast.success("Link successfully created.");
+
+        router.refresh();
+
+        reset();
+      })
+      .catch((error) => {
+        if (error) {
+          toast.error("Link already created.");
+        }
+      });
   };
 
   return (

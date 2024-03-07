@@ -8,8 +8,30 @@ export async function GET() {
 }
 
 export async function POST(request: NextRequest) {
-  const data = await request.json();
-  console.log(data);
+  const { name, link, email } = await request.json();
 
-  return NextResponse.json(data, { status: 201 });
+  const user = await prisma.user.findFirst({
+    where: { email },
+  });
+
+  try {
+    const newLink = await prisma.link.create({
+      data: {
+        name,
+        link,
+        user: {
+          connect: { id: user?.id },
+        },
+      },
+    });
+
+    return NextResponse.json(newLink, { status: 201 });
+  } catch (error) {
+    if (error) {
+      return NextResponse.json(
+        { message: "Link already created." },
+        { status: 409 },
+      );
+    }
+  }
 }
