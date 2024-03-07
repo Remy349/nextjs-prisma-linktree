@@ -3,7 +3,9 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
 import { Loader2 } from "lucide-react";
+import { useSession } from "next-auth/react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -20,8 +22,11 @@ export const CreateForm = () => {
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm<TFormSchema>({ resolver: zodResolver(FormSchema) });
+  const userSession = useSession()
 
-  const onSubmit = async (formData: TFormSchema) => {};
+  const onSubmit = async (formData: TFormSchema) => {
+    console.log(userSession);
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="grid gap-y-6 w-full">

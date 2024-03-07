@@ -14,4 +14,7 @@ class PrismaSingleton {
   }
 }
 
-export const prisma = PrismaSingleton.getInstance();
+export const prisma =
+  process.env.NODE_ENV === "development"
+    ? PrismaSingleton.getInstance()
+    : new PrismaClient();
