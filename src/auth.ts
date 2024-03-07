@@ -4,14 +4,12 @@ import { authConfig } from "@/auth.config";
 import { z } from "zod";
 import bcrypt from "bcrypt";
 import { prisma } from "@/libs/prisma";
-import { PrismaAdapter } from "@auth/prisma-adapter";
 
 export const {
   handlers: { GET, POST },
   auth,
 } = NextAuth({
   ...authConfig,
-  adapter: PrismaAdapter(prisma),
   providers: [
     CredentialsProvider({
       async authorize(credentials) {

@@ -40,7 +40,8 @@ export const SignInForm = () => {
     if (res?.error) {
       toast.error("Invalid credentials.");
     } else {
-      router.push("/dashboard");
+      router.replace("/dashboard");
+      router.refresh();
     }
   };
 
