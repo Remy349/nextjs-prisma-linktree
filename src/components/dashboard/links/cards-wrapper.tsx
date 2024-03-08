@@ -1,8 +1,8 @@
-import { TLinks } from "@/types/types";
+import { TLink } from "@/types/types";
 import { LinkCard } from "./card";
 
 interface ICardWrapperProps {
-  items: TLinks[];
+  items: TLink[];
 }
 
 export const CardsWrapper = ({ items }: ICardWrapperProps) => {

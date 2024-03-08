@@ -1,8 +1,8 @@
-import { TLinks } from "@/types/types";
+import { TLink } from "@/types/types";
 import { User } from "next-auth";
 
 interface IPreviewProps {
-  items: TLinks[];
+  items: TLink[];
   user: User | undefined;
 }
 

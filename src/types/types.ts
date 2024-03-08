@@ -1,4 +1,4 @@
-export type TLinks = {
+export type TLink = {
   id: number;
   name: string;
   link: string;
