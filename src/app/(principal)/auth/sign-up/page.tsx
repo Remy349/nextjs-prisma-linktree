@@ -11,7 +11,7 @@ export default function Page() {
       <div className="px-6 sm:max-w-5xl sm:mx-auto">
         <div className="mb-8 md:mb-12">
           <h1 className="font-bold text-3xl text-center lg:text-4xl">
-            Join Linktree
+            Join <span className="text-primary">Linktree</span>
           </h1>
           <p className="text-center text-lg text-muted-foreground">
             Sign up for free!

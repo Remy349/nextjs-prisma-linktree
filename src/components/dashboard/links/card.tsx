@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardDescription,
@@ -6,14 +5,15 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Trash } from "lucide-react";
+import { DeleteDialog } from "./delete-dialog";
 
 interface ILinkCardProps {
+  id: number;
   title: string;
   link: string;
 }
 
-export const LinkCard = ({ title, link }: ILinkCardProps) => {
+export const LinkCard = ({ id, title, link }: ILinkCardProps) => {
   return (
     <Card>
       <CardHeader>
@@ -21,9 +21,7 @@ export const LinkCard = ({ title, link }: ILinkCardProps) => {
         <CardDescription>{link}</CardDescription>
       </CardHeader>
       <CardFooter>
-        <Button variant="destructive" size="icon">
-          <Trash className="w-4 h-4" />
-        </Button>
+        <DeleteDialog id={id} />
       </CardFooter>
     </Card>
   );
