@@ -53,7 +53,39 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
+  }
+
+  #linkPreview::before {
+    content: "";
+    background-color: black;
+    position: absolute;
+    width: 60px;
+    height: 20px;
+    border-bottom-right-radius: 0.5rem;
+    left: 50%;
+  }
+
+  #linkPreview::after {
+    content: "";
+    background-color: black;
+    position: absolute;
+    top: 0;
+    width: 60px;
+    height: 20px;
+    border-bottom-left-radius: 0.5rem;
+    right: 50%;
+  }
+
+  ::-webkit-scrollbar {
+    width: 0.5rem;
+    border-radius: 0.5rem;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary;
+    border-radius: 0.5rem;
   }
 }
